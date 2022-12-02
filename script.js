@@ -1,4 +1,5 @@
 let currentQuestion = 0;
+let correctAnswer = 0;
 
 showQuestion();
 
@@ -12,15 +13,24 @@ function showQuestion() {
     document.querySelector('.question').innerHTML = q.question;
     let optionsHtml = '';
     for (let i in q.options) {
-      optionsHtml += `<div data-op="${i}" class="option"><span>${parseInt(i) + 1}</span>${q.options}</div>`;
+      optionsHtml += `<div data-op="${i}" class="option"><span>${parseInt(i) + 1}</span>${q.options[i]}</div>`;
     }
     document.querySelector('.options').innerHTML = optionsHtml;
 
-    document.querySelector('.options .option').forEach(item => {
+    document.querySelectorAll('.options .option').forEach(item => {
       item.addEventListener('click', optionClickEvent);
     })
 
-  } else {
+  }
+}
 
+function optionClickEvent(e) {
+  let clickedOption = parseInt(e.target.getAttribute('data-op'));
+
+  if (questions[currentQuestion].answer === clickedOption) {
+    console.log('Acertou!');
+  }
+  else {
+    console.log('Errou');
   }
 }
