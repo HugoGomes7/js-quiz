@@ -16,6 +16,10 @@ function showQuestion() {
     }
     document.querySelector('.options').innerHTML = optionsHtml;
 
+    document.querySelector('.options .option').forEach(item => {
+      item.addEventListener('click', optionClickEvent);
+    })
+
   } else {
 
   }
